@@ -1,0 +1,66 @@
+.sidebar {
+    position: relative;
+    height: 100%;
+    width: 20%;
+    max-width: 21rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+}
+
+.sidebar .logo {
+    height: 5rem;
+    width: 100%;
+    flex-shrink: 0;
+    font-size: var(--s2);
+    font-weight: 900;
+    color: var(--text1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar .sidebar-content {
+    height: 100%;
+    width: 95%;
+    display: flex;
+    flex-flow: column;
+    justify-content: stretch;
+}
+
+.sidebar .join-room {
+    height: 15%;
+    width: 100%;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sidebar .join-room input {
+    height: 40%;
+    max-height: var(--s1);
+    width: 100%;
+    max-width: 15rem;
+    font-weight: 400;
+}
+
+.sidebar .join-room .button {
+    height: 40%;
+    max-height: var(--s1);
+    width: 100%;
+    max-width: 15rem;
+}
+
+.sidebar .logout {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

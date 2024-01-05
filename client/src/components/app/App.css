@@ -1,0 +1,94 @@
+:root {
+    --primary: #29292b;
+    --secondary: #ff6a47;
+    --tertiary: #5afb7a;
+    --border: #5f5f5f;
+    --text1: white;
+    --text2: black;
+    --s5: 10px;
+    --s4: calc(1.6 * var(--s5));
+    --s3: calc(1.6 * var(--s4));
+    --s2: calc(1.6 * var(--s3));
+    --s1: calc(1.6 * var(--s2));
+    font-family: sans-serif;
+}
+
+::placeholder {
+    color: var(--text1);
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary);
+    border-radius: 1rem;
+}
+
+input,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    outline: none;
+    background-color: var(--primary);
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--text1);
+    padding-left: 1rem;
+    font-size: 1.2rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: var(--text1);
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.app {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--primary);
+    display: flex;
+    background-size: 130%;
+    background-position: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-details {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    font-size: var(--s4);
+}
+
+.user-details .user-name {
+    margin-right: 1rem;
+}
+
+.user-details .button {
+    padding: 0.5rem 1rem;
+}
+
+.invisible {
+    visibility: hidden;
+}

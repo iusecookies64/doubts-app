@@ -1,0 +1,16 @@
+.custom-button {
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text2);
+    user-select: none;
+}
+
+.custom-button:hover {
+    cursor: pointer;
+}
+
+.custom-button:active {
+    transform: scale(0.99);
+}

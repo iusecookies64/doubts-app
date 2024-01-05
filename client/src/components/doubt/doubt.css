@@ -1,0 +1,92 @@
+.doubt-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.doubt-container .divider {
+    margin-bottom: 1rem;
+}
+
+.doubt-container .doubt-input {
+    border-top: 1px solid var(--border);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    background-color: black;
+}
+
+.doubt-container .doubt-input input {
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
+    padding-left: 1rem;
+}
+
+.doubt-container .doubt-input .button {
+    font-size: var(--s3);
+    padding: 0.8rem 1.2rem;
+}
+
+.doubt-container .active-doubts {
+    height: 100%;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: scroll;
+}
+
+.doubt-container .active-doubts .doubt {
+    width: 100%;
+    padding: 1rem 1rem 1rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-shrink: 0;
+    font-size: var((--s4));
+    margin-bottom: 0.7rem;
+}
+
+.doubt-container .active-doubts .doubt .doubt-sidebar {
+    height: 3rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    margin-right: 0.5rem;
+    /* font-size: var(--s4); */
+}
+
+.doubt-container .active-doubts .doubt .doubt-content {
+    border-left: 1px solid var(--border);
+    min-height: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.doubt-container .active-doubts .doubt .doubt-sidebar i {
+    margin-left: 4px;
+}
+
+.doubt-container .active-doubts .doubt .doubt-sidebar i:hover {
+    cursor: pointer;
+}
+
+.votes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.voted {
+    color: var(--secondary);
+}
