@@ -6,7 +6,7 @@ import { Button } from "../button/button";
 
 export function UserComponent() {
     const [signupState, setSignupState] = useState(false);
-    const { setState } = useContext(AppContext);
+    const { state, setState } = useContext(AppContext);
 
     function toggleSignup() {
         setSignupState(!signupState);
@@ -21,7 +21,7 @@ export function UserComponent() {
             email,
             password,
         };
-        const res = await fetch("http://localhost:3001/users/signup", {
+        const res = await fetch(`http://${state.url}:3001/users/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export function UserComponent() {
             userId,
             password,
         };
-        const res = await fetch("http://localhost:3001/users/signin", {
+        const res = await fetch(`http://${state.url}:3001/users/signin`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

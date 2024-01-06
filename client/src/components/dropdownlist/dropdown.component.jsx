@@ -3,10 +3,11 @@ import { AppContext } from "../app/App";
 import "./drop-down-list.css";
 import { toast } from "react-toastify";
 
-export function DropDownList({ list, title }) {
+export function DropDownList({ list, title, toggleSideBar }) {
     const { state, setState } = useContext(AppContext);
 
     function setActiveRoom(id) {
+        toggleSideBar();
         setState((oldState) => {
             return {
                 ...oldState,
@@ -19,7 +20,7 @@ export function DropDownList({ list, title }) {
         // confirming from the user
         if (!window.confirm("Delete This Room")) return;
         // sending req to delete this room
-        const res = await fetch(`http://localhost:3001/rooms/${roomId}`, {
+        const res = await fetch(`http://${state.url}:3001/rooms/${roomId}`, {
             method: "DELETE",
             headers: {
                 authorization: state.token,

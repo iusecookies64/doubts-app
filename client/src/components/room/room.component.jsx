@@ -11,16 +11,18 @@ export function Room({ roomId }) {
     const [edit, setEdit] = useState("");
     const [roomData, setRoomData] = useState("");
     const [activeTopic, setActiveTopic] = useState("");
-
     // fetching room data
     useEffect(() => {
         async function fetchRoomData() {
-            const res = await fetch(`http://localhost:3001/rooms/${roomId}`, {
-                method: "GET",
-                headers: {
-                    authorization: state.token,
-                },
-            });
+            const res = await fetch(
+                `http://${state.url}:3001/rooms/${roomId}`,
+                {
+                    method: "GET",
+                    headers: {
+                        authorization: state.token,
+                    },
+                }
+            );
             const data = await res.json();
             if (!data.success) {
                 console.log("failed to get room data");
@@ -34,8 +36,8 @@ export function Room({ roomId }) {
 
     async function addNewTopic() {
         const len = roomData.topics.length;
-        const title = `New Room ${len + 1}`;
-        const res = await fetch("http://localhost:3001/topics/create", {
+        const title = `New Topic ${len + 1}`;
+        const res = await fetch(`http://${state.url}:3001/topics/create`, {
             method: "POST",
             headers: {
                 authorization: state.token,
@@ -75,7 +77,7 @@ export function Room({ roomId }) {
             (topic) => topic["_id"] === topicId
         );
 
-        const res = await fetch("http://localhost:3001/topics/update", {
+        const res = await fetch(`http://${state.url}:3001/topics/update`, {
             method: "POST",
             headers: {
                 authorization: state.token,
@@ -113,7 +115,7 @@ export function Room({ roomId }) {
     }
 
     function copyRoomId() {
-        navigator.clipboard.writeText(state.activeRoom);
+        // if (navigator.clipboard) navigator.clipboard.writeText(state.activeRoom);
         toast.success("Copied To Clipboard", {
             theme: "dark",
             autoClose: 1500,
@@ -122,7 +124,7 @@ export function Room({ roomId }) {
 
     if (roomData) {
         return (
-            <div className="room-container">
+            <div id={roomData["_id"]} className="room-container">
                 <div className="room-title" key={roomData["_id"]}>
                     {roomData.title}
                 </div>
@@ -180,7 +182,11 @@ export function Room({ roomId }) {
                         })}
                         <Button content={"Add"} onClick={addNewTopic} />
                     </div>
-                    <Button content={"Share Room Id"} onClick={copyRoomId} />
+                    <Button
+                        content={"Share Room Id"}
+                        onClick={copyRoomId}
+                        className={"share-room"}
+                    />
                 </div>
                 <Divider alignment={"horizontal"} />
                 <Doubt topicId={activeTopic} />

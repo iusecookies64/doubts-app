@@ -7,17 +7,37 @@ import "./sidebar.css";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
-export function SideBar({ rooms, userName, activeRoom }) {
+export function SideBar({ rooms, userName, activeRoom, width }) {
     const { state, setState } = useContext(AppContext);
     const previousRooms = rooms.filter((room) => room.createdBy !== userName);
     const userRooms = rooms.filter((room) => room.createdBy === userName);
+    const bars = <i className="fa-solid fa-bars"></i>;
+    const xbar = <i className="fa-solid fa-xmark"></i>;
+    let sideBarClass = "";
+    if (width < 950) {
+        sideBarClass = "sidebar-float display-none";
+    }
+    const xButton = (
+        <Button
+            content={xbar}
+            onClick={toggleSideBar}
+            className="sidebar-button float-right"
+        />
+    );
+    const barsButton = (
+        <Button
+            content={bars}
+            onClick={toggleSideBar}
+            className="sidebar-button float-left"
+        />
+    );
     async function joinRoom() {
         const input = document.getElementById("join-room-id");
         const id = input.value;
         input.value = "";
 
         if (!id) return;
-        const res = await fetch(`http://localhost:3001/rooms/join/${id}`, {
+        const res = await fetch(`http://${state.url}:3001/rooms/join/${id}`, {
             method: "POST",
             headers: {
                 authorization: state.token,
@@ -29,6 +49,8 @@ export function SideBar({ rooms, userName, activeRoom }) {
             return;
         } else {
             toast.success("Joined Room Successfully", { theme: "dark" });
+            // for responsive
+            if (width < 950) toggleSideBar();
         }
 
         setState((oldState) => {
@@ -39,24 +61,42 @@ export function SideBar({ rooms, userName, activeRoom }) {
             };
         });
     }
+
+    function toggleSideBar() {
+        if (width > 950) return;
+        const element = document.getElementById("sidebar");
+        element.classList.toggle("display-none");
+    }
     return (
-        <div className="sidebar">
-            <div className="logo">Doubts App</div>
-            <Divider alignment={"horizontal"} />
-            <div className="sidebar-content">
-                <DropDownList list={previousRooms} title="Previous Rooms" />
+        <>
+            {width < 950 ? barsButton : null}
+            <div id="sidebar" className={`sidebar ${sideBarClass}`}>
+                {width < 950 ? xButton : null}
+                <div className="logo">Doubts App</div>
                 <Divider alignment={"horizontal"} />
-                <DropDownList list={userRooms} title="My Rooms" />
-                {(() => {
-                    if (activeRoom) {
-                        return <CreateRoom />;
-                    }
-                })()}
+                <div className="sidebar-content">
+                    <DropDownList
+                        list={previousRooms}
+                        title="Previous Rooms"
+                        toggleSideBar={toggleSideBar}
+                    />
+                    <Divider alignment={"horizontal"} />
+                    <DropDownList
+                        list={userRooms}
+                        title="My Rooms"
+                        toggleSideBar={toggleSideBar}
+                    />
+                    {activeRoom ? <CreateRoom /> : null}
+                </div>
+                <div className="join-room">
+                    <input
+                        id="join-room-id"
+                        type="text"
+                        placeholder="Room Id"
+                    />
+                    <Button content="Join Room" onClick={joinRoom} />
+                </div>
             </div>
-            <div className="join-room">
-                <input id="join-room-id" type="text" placeholder="Room Id" />
-                <Button content="Join Room" onClick={joinRoom} />
-            </div>
-        </div>
+        </>
     );
 }

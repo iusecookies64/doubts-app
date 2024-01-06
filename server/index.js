@@ -1,4 +1,4 @@
-process.env.JWT_SECRET = "123456";
+require("dotenv").config();
 const express = require("express");
 const { Server } = require("socket.io");
 const { createServer } = require("node:http");
@@ -15,6 +15,8 @@ const server = createServer(app);
 const io = new Server(server, {
     cors: "*",
 });
+
+console.log(process.env);
 
 io.on("connection", socketHandler);
 

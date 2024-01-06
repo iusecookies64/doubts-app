@@ -5,18 +5,23 @@ import "./App.css";
 import { Button } from "../button/button";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const { useState, createContext, useEffect } = require("react");
+import { useState, createContext, useEffect } from "react";
 
 export const AppContext = createContext();
 
 export function App() {
     const [state, setState] = useState({
+        url: "192.168.0.143",
         rooms: [],
         activeRoom: null,
         token: window.localStorage.doubtsAppToken,
         userName: "",
         toast,
+    });
+    const [width, setWidth] = useState(window.innerWidth);
+
+    window.addEventListener("resize", () => {
+        setWidth(window.innerWidth);
     });
 
     function logoutUser() {
@@ -33,7 +38,7 @@ export function App() {
     }
 
     async function getRooms() {
-        const res = await fetch("http://localhost:3001/rooms/user-rooms", {
+        const res = await fetch(`http://${state.url}:3001/rooms/user-rooms`, {
             method: "GET",
             headers: {
                 authorization: state.token,
@@ -69,13 +74,18 @@ export function App() {
             <AppContext.Provider value={{ state, setState }}>
                 <div className="app">
                     <div className="user-details">
-                        <div className="user-name">Hello, {state.userName}</div>
+                        {width > 700 ? (
+                            <div className="user-name">
+                                Hello, {state.userName}
+                            </div>
+                        ) : null}
                         <Button content={"Logout"} onClick={logoutUser} />
                     </div>
                     <SideBar
                         rooms={state.rooms}
                         userName={state.userName}
                         activeRoom={state.activeRoom}
+                        width={width}
                     />
                     <Main />
                 </div>

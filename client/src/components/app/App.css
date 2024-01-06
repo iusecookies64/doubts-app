@@ -19,6 +19,7 @@
 
 ::-webkit-scrollbar {
     width: 2px;
+    height: 2px;
 }
 
 ::-webkit-scrollbar-track {
@@ -44,6 +45,10 @@ input:-webkit-autofill:active {
     font-size: 1.2rem;
 }
 
+html {
+    font-size: 16px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -55,13 +60,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    height: 100dvh;
+    width: 100dvw;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
 }
 
 .app {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     background-color: var(--primary);
     display: flex;
     background-size: 130%;
@@ -91,4 +101,22 @@ body {
 
 .invisible {
     visibility: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+    :root {
+        --s5: 8px;
+    }
+    html {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    :root {
+        --s5: 7px;
+    }
+    html {
+        font-size: 13px;
+    }
 }
