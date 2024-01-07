@@ -3,8 +3,9 @@ const router = Router();
 const { Rooms, Topics } = require("../models");
 const { use } = require("./room");
 const zod = require("zod");
+const authMiddleware = require("../middlewares/authorize");
 
-router.get("/user-rooms", async (req, res) => {
+router.get("/user-rooms", authMiddleware, async (req, res) => {
     const userDocument = await res.locals.userDocument.populate("rooms");
     res.json({
         success: true,
@@ -13,7 +14,7 @@ router.get("/user-rooms", async (req, res) => {
     });
 });
 
-router.post("/join/:roomId", async (req, res) => {
+router.post("/join/:roomId", authMiddleware, async (req, res) => {
     const { roomId } = req.params;
     const { userDocument } = res.locals;
     // verifying id
@@ -37,7 +38,7 @@ router.post("/join/:roomId", async (req, res) => {
     }
 });
 
-router.get("/:roomId", async (req, res) => {
+router.get("/:roomId", authMiddleware, async (req, res) => {
     const { roomId } = req.params;
     try {
         const roomDocument = await Rooms.findById(roomId).populate("topics");
@@ -53,7 +54,7 @@ router.get("/:roomId", async (req, res) => {
     }
 });
 
-router.post("/create-room", async (req, res) => {
+router.post("/create-room", authMiddleware, async (req, res) => {
     const { title, topic } = req.body;
     const { userDocument } = res.locals;
 
@@ -81,7 +82,7 @@ router.post("/create-room", async (req, res) => {
     });
 });
 
-router.delete("/:roomId", async (req, res) => {
+router.delete("/:roomId", authMiddleware, async (req, res) => {
     const { userDocument } = res.locals;
     const { roomId } = req.params;
     try {

@@ -6,7 +6,6 @@ const roomRouter = require("./routes/room");
 const userRouter = require("./routes/user");
 const topicRouter = require("./routes/topic");
 const socketHandler = require("./socket");
-const authMiddleware = require("./middlewares/authorize");
 const cors = require("cors");
 const port = process.env.PORT || 3001;
 
@@ -28,10 +27,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("./public"));
 
 app.use("/users", userRouter);
-
-// all requests going below must first be verified by auth middleware
-app.use(authMiddleware);
-
 app.use("/rooms", roomRouter);
 app.use("/topics", topicRouter);
 

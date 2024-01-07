@@ -1,8 +1,9 @@
 const { Router } = require("express");
 const router = Router();
 const { Rooms, Topics } = require("../models");
+const authMiddleware = require("../middlewares/authorize");
 
-router.post("/create", async (req, res) => {
+router.post("/create", authMiddleware, async (req, res) => {
     const { title, roomId } = req.body;
     const roomDocument = await Rooms.findById(roomId);
     const topicDocument = new Topics({ title });
@@ -22,7 +23,7 @@ router.post("/create", async (req, res) => {
     });
 });
 
-router.post("/update", async (req, res) => {
+router.post("/update", authMiddleware, async (req, res) => {
     const { newTitle, topicId } = req.body;
     try {
         const topicDocument = await Topics.findById(topicId);
