@@ -25,6 +25,7 @@ app.use(
 );
 app.use(express.json()); // req.body parser
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static("./public"));
 
 app.use("/users", userRouter);
 

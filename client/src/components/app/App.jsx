@@ -11,7 +11,7 @@ export const AppContext = createContext();
 
 export function App() {
     const [state, setState] = useState({
-        url: "http://doubtsapp-api.us-east-1.elasticbeanstalk.com",
+        url: "http://localhost:3001",
         rooms: [],
         activeRoom: null,
         token: window.localStorage.doubtsAppToken,
