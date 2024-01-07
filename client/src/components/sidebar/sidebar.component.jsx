@@ -37,7 +37,7 @@ export function SideBar({ rooms, userName, activeRoom, width }) {
         input.value = "";
 
         if (!id) return;
-        const res = await fetch(`http://${state.url}:3001/rooms/join/${id}`, {
+        const res = await fetch(`${state.url}/rooms/join/${id}`, {
             method: "POST",
             headers: {
                 authorization: state.token,

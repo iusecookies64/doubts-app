@@ -10,7 +10,7 @@ export function Doubt({ topicId }) {
     const { state } = useContext(AppContext);
     // here we send a socket connection to server
     useEffect(() => {
-        socket = io(`http://${state.url}:3001`);
+        socket = io(`${state.url}`);
         socket.on("connect", () => {
             setIsConnected(true);
             // emitting event to get doubt list

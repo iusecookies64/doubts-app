@@ -21,7 +21,7 @@ export function UserComponent() {
             email,
             password,
         };
-        const res = await fetch(`http://${state.url}:3001/users/signup`, {
+        const res = await fetch(`${state.url}/users/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -51,7 +51,9 @@ export function UserComponent() {
             userId,
             password,
         };
-        const res = await fetch(`http://${state.url}:3001/users/signin`, {
+
+        const url = `${state.url}/users/signin`;
+        const res = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

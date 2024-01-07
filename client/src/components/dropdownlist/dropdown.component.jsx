@@ -20,7 +20,7 @@ export function DropDownList({ list, title, toggleSideBar }) {
         // confirming from the user
         if (!window.confirm("Delete This Room")) return;
         // sending req to delete this room
-        const res = await fetch(`http://${state.url}:3001/rooms/${roomId}`, {
+        const res = await fetch(`${state.url}/rooms/${roomId}`, {
             method: "DELETE",
             headers: {
                 authorization: state.token,

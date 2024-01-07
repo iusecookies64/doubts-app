@@ -14,15 +14,12 @@ export function Room({ roomId }) {
     // fetching room data
     useEffect(() => {
         async function fetchRoomData() {
-            const res = await fetch(
-                `http://${state.url}:3001/rooms/${roomId}`,
-                {
-                    method: "GET",
-                    headers: {
-                        authorization: state.token,
-                    },
-                }
-            );
+            const res = await fetch(`${state.url}/rooms/${roomId}`, {
+                method: "GET",
+                headers: {
+                    authorization: state.token,
+                },
+            });
             const data = await res.json();
             if (!data.success) {
                 console.log("failed to get room data");
@@ -37,7 +34,7 @@ export function Room({ roomId }) {
     async function addNewTopic() {
         const len = roomData.topics.length;
         const title = `New Topic ${len + 1}`;
-        const res = await fetch(`http://${state.url}:3001/topics/create`, {
+        const res = await fetch(`${state.url}/topics/create`, {
             method: "POST",
             headers: {
                 authorization: state.token,
@@ -77,7 +74,7 @@ export function Room({ roomId }) {
             (topic) => topic["_id"] === topicId
         );
 
-        const res = await fetch(`http://${state.url}:3001/topics/update`, {
+        const res = await fetch(`${state.url}/topics/update`, {
             method: "POST",
             headers: {
                 authorization: state.token,

@@ -2,10 +2,10 @@
     "name": "doubtsapp",
     "version": "1.0.0",
     "description": "an app where people can come and doubt session with their students",
-    "main": "index.js",
+    "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon index.js"
+        "start": "node app.js"
     },
     "author": "Tushar Raghav",
     "license": "ISC",

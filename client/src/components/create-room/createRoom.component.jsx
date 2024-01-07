@@ -19,7 +19,7 @@ export function CreateRoom() {
         if (!title || !topic) return; // if any of the field is empty we return
 
         // calling server to create room
-        const res = await fetch(`http://${state.url}:3001/rooms/create-room/`, {
+        const res = await fetch(`${state.url}/rooms/create-room/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

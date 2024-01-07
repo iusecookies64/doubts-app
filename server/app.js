@@ -8,15 +8,13 @@ const topicRouter = require("./routes/topic");
 const socketHandler = require("./socket");
 const authMiddleware = require("./middlewares/authorize");
 const cors = require("cors");
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 const app = express();
 const server = createServer(app);
 const io = new Server(server, {
     cors: "*",
 });
-
-console.log(process.env);
 
 io.on("connection", socketHandler);
 

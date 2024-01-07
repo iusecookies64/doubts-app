@@ -11,7 +11,7 @@ export const AppContext = createContext();
 
 export function App() {
     const [state, setState] = useState({
-        url: "192.168.0.143",
+        url: "http://doubtsapp-api.us-east-1.elasticbeanstalk.com",
         rooms: [],
         activeRoom: null,
         token: window.localStorage.doubtsAppToken,
@@ -38,7 +38,7 @@ export function App() {
     }
 
     async function getRooms() {
-        const res = await fetch(`http://${state.url}:3001/rooms/user-rooms`, {
+        const res = await fetch(`${state.url}/rooms/user-rooms`, {
             method: "GET",
             headers: {
                 authorization: state.token,
