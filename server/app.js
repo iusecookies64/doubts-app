@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("./public"));
 
 app.get("/", (req, res) => {
-    res.send("index.html");
+    res.render("index.html");
 });
 
 app.use("/users", userRouter);
