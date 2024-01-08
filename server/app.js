@@ -26,10 +26,6 @@ app.use(express.json()); // req.body parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("./public"));
 
-app.get("/", (req, res) => {
-    res.render("index.html");
-});
-
 app.use("/users", userRouter);
 app.use("/rooms", roomRouter);
 app.use("/topics", topicRouter);
