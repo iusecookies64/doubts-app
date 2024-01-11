@@ -11,7 +11,7 @@ export const AppContext = createContext();
 
 export function App() {
     const [state, setState] = useState({
-        url: "http://3.111.224.21:3001",
+        url: "https://localhost:3001",
         rooms: [],
         activeRoom: null,
         token: window.localStorage.doubtsAppToken,
