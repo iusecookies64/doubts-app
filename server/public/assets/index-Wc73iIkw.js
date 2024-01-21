@@ -12582,7 +12582,7 @@ function fm() {
   const [e, t] = L.useState(!1),
     { state: n, setState: r } = L.useContext(pt),
     i =
-      "my-4 p-2 text-black text-lg outline-none rounded-xl placeholder:text-black md:text-xl";
+      "my-4 p-2 w-full text-black text-lg outline-none rounded-xl placeholder:text-black md:text-xl";
   function o() {
     t(!e);
   }
